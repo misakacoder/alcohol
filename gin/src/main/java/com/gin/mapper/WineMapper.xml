@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gin.mapper.WineMapper">
+    <resultMap id="BaseResultMap" type="com.gin.entity.Wine">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="code_name" jdbcType="VARCHAR" property="codeName" />
+        <result column="person_name" jdbcType="VARCHAR" property="personName" />
+        <result column="wine_name" jdbcType="VARCHAR" property="wineName" />
+        <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, code_name, person_name, wine_name, create_at
+    </sql>
+    <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into wine
+        (
+        <include refid="Base_Column_List" />
+        )
+        values
+        (
+        #{id, jdbcType=BIGINT}, 
+        #{codeName, jdbcType=VARCHAR}, 
+        #{personName, jdbcType=VARCHAR}, 
+        #{wineName, jdbcType=VARCHAR}, 
+        #{createAt, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into wine
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="codeName != null">
+                code_name,
+            </if>
+            <if test="personName != null">
+                person_name,
+            </if>
+            <if test="wineName != null">
+                wine_name,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id, jdbcType=BIGINT},
+            </if>
+            <if test="codeName != null">
+                #{codeName, jdbcType=VARCHAR},
+            </if>
+            <if test="personName != null">
+                #{personName, jdbcType=VARCHAR},
+            </if>
+            <if test="wineName != null">
+                #{wineName, jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                #{createAt, jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertList" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into wine
+        (
+        <include refid="Base_Column_List" />
+        )
+        values
+        <foreach collection="entityList" item="entity" separator=",">
+        (
+        #{entity.id, jdbcType=BIGINT}, 
+        #{entity.codeName, jdbcType=VARCHAR}, 
+        #{entity.personName, jdbcType=VARCHAR}, 
+        #{entity.wineName, jdbcType=VARCHAR}, 
+        #{entity.createAt, jdbcType=TIMESTAMP}
+        )
+        </foreach>
+    </insert>
+
+    <delete id="deleteByPrimaryKey">
+        delete from wine
+        where
+        id = #{primaryKey, jdbcType=BIGINT}
+    </delete>
+
+    <delete id="delete">
+        delete from wine
+        where
+        <trim prefixOverrides="and">
+            <if test="id != null">
+                and id = #{id, jdbcType=BIGINT}
+            </if>
+            <if test="codeName != null">
+                and code_name = #{codeName, jdbcType=VARCHAR}
+            </if>
+            <if test="personName != null">
+                and person_name = #{personName, jdbcType=VARCHAR}
+            </if>
+            <if test="wineName != null">
+                and wine_name = #{wineName, jdbcType=VARCHAR}
+            </if>
+            <if test="createAt != null">
+                and create_at = #{createAt, jdbcType=TIMESTAMP}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="updateByPrimaryKey">
+        update wine
+        <set>
+            code_name = #{codeName, jdbcType=VARCHAR},
+            person_name = #{personName, jdbcType=VARCHAR},
+            wine_name = #{wineName, jdbcType=VARCHAR},
+            create_at = #{createAt, jdbcType=TIMESTAMP},
+        </set>
+        where
+        id = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <delete id="updateByPrimaryKeySelective">
+        update wine
+        <set>
+            <if test="codeName != null">
+                code_name = #{codeName, jdbcType=VARCHAR},
+            </if>
+            <if test="personName != null">
+                person_name = #{personName, jdbcType=VARCHAR},
+            </if>
+            <if test="wineName != null">
+                wine_name = #{wineName, jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt, jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where
+        id = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from wine
+        where
+        id = #{primaryKey, jdbcType=BIGINT}
+    </select>
+
+    <select id="selectOne" resultMap="BaseResultMap">
+        <include refid="select" />
+    </select>
+
+    <select id="select" resultMap="BaseResultMap">
+        <include refid="select" />
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        <include refid="select" />
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        <include refid="select" />
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(1) from wine
+    </select>
+
+    <select id="page" resultMap="BaseResultMap">
+        <include refid="select" />
+    </select>
+
+    <sql id="select">
+        select
+        <include refid="Base_Column_List" />
+        from wine
+        <include refid="selectByBean" />
+    </sql>
+
+    <sql id="selectByBean">
+        <where>
+        </where>
+    </sql>
+</mapper>

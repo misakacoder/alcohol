@@ -1,0 +1,13 @@
+{
+  "server": {
+    "port": 8088,
+    "author": "ENC(gWbJzAJhc52m0lQ5I/BSqQ==)"
+  },
+  "spring": {
+    "datasource": {
+      "url": "jdbc:mysql://localhost:3306/wine?useSSL=false",
+      "username": "root",
+      "password": "root"
+    }
+  }
+}

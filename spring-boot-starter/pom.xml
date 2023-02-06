@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.misaka</groupId>
+        <artifactId>wine</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>spring-boot-starter</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>mask-spring-boot-starter</module>
+        <module>rate-limit-spring-boot-starter</module>
+        <module>config-spring-boot-starter</module>
+        <module>bourbon-spring-boot-starter</module>
+        <module>auth-spring-boot-starter</module>
+        <module>kir-spring-boot-starter</module>
+    </modules>
+</project>

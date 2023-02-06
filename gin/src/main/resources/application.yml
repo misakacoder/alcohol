@@ -1,0 +1,68 @@
+server:
+  port: 8089
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.153:6033/misaka?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC
+    username: root
+    password: centnet@mysql#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 32
+      maximum-pool-size: 64
+      idle-timeout: 600000
+      max-lifetime: 540000
+      connection-timeout: 60000
+  sql:
+    init:
+      schema-locations: classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql
+      continue-on-error: true
+      encoding: UTF-8
+  mvc:
+    static-path-pattern: /**
+  web:
+    resources:
+      static-locations: classpath:/static
+  redis:
+    host: 192.168.1.153
+    port: 9736
+    password: centnet@redis#
+    database: 2
+    jedis:
+      pool:
+        max-active: 32
+        max-wait: -1
+        min-idle: 32
+        max-idle: 64
+    connect-timeout: 30000
+
+knife4j:
+  enable: true
+  basic:
+    enable: true
+    username: gin
+    password: gin
+
+config:
+  encryptor:
+    password: misaka mikoto!!!
+
+auth:
+  basic:
+    enable: true
+    username: gin
+    password: gin
+
+kir:
+  hero:
+    url: https://game.gtimg.cn
+
+#mybatis 枚举处理
+mybatis:
+  configuration:
+    default-enum-type-handler: com.gin.handler.BaseEnumTypeHandler
+
+#tk.mybatis 通用Mapper枚举处理
+mapper:
+  enum-as-simple-type: true
