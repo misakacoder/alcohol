@@ -16,6 +16,7 @@
     <sql id="Base_Column_List">
         <#list columns as column>${column.name}<#if column_has_next>, </#if></#list>
     </sql>
+
 <#if orm != MYBATIS_PLUS>
     <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
         insert into ${table.name}

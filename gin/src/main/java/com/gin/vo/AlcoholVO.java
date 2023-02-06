@@ -5,8 +5,8 @@ import com.misaka.enums.MaskType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel("酒厂VO")
-public class WineVO {
+@ApiModel("酒VO")
+public class AlcoholVO {
 
     @ApiModelProperty("代号")
     private String codeName;
@@ -16,7 +16,7 @@ public class WineVO {
     private String personName;
 
     @ApiModelProperty("酒名")
-    private String wineName;
+    private String alcoholName;
 
     public String getCodeName() {
         return codeName;
@@ -34,11 +34,11 @@ public class WineVO {
         this.personName = personName;
     }
 
-    public String getWineName() {
-        return wineName;
+    public String getAlcoholName() {
+        return alcoholName;
     }
 
-    public void setWineName(String wineName) {
-        this.wineName = wineName;
+    public void setAlcoholName(String alcoholName) {
+        this.alcoholName = alcoholName;
     }
 }
