@@ -8,13 +8,13 @@ import java.util.Date;
 
 /**
  * <p>
- * 
+ * 酒
  * </p>
  *
  * @author sherry
- * @date 2022-10-27
+ * @date 2023-02-06
  */
-public class Wine implements Serializable {
+public class Alcohol implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class Wine implements Serializable {
 
     private String personName;
 
-    private String wineName;
+    private String alcoholName;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
@@ -54,12 +54,12 @@ public class Wine implements Serializable {
         this.personName = personName;
     }
 
-    public String getWineName() {
-        return wineName;
+    public String getAlcoholName() {
+        return alcoholName;
     }
 
-    public void setWineName(String wineName) {
-        this.wineName = wineName;
+    public void setAlcoholName(String alcoholName) {
+        this.alcoholName = alcoholName;
     }
 
     public Date getCreateAt() {

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gin.mapper.WineMapper">
-    <resultMap id="BaseResultMap" type="com.gin.entity.Wine">
+<mapper namespace="com.gin.mapper.AlcoholMapper">
+    <resultMap id="BaseResultMap" type="com.gin.entity.Alcohol">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="code_name" jdbcType="VARCHAR" property="codeName" />
         <result column="person_name" jdbcType="VARCHAR" property="personName" />
-        <result column="wine_name" jdbcType="VARCHAR" property="wineName" />
+        <result column="alcohol_name" jdbcType="VARCHAR" property="alcoholName" />
         <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, code_name, person_name, wine_name, create_at
+        id, code_name, person_name, alcohol_name, create_at
     </sql>
+
     <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-        insert into wine
+        insert into alcohol
         (
         <include refid="Base_Column_List" />
         )
@@ -22,13 +23,13 @@
         #{id, jdbcType=BIGINT}, 
         #{codeName, jdbcType=VARCHAR}, 
         #{personName, jdbcType=VARCHAR}, 
-        #{wineName, jdbcType=VARCHAR}, 
+        #{alcoholName, jdbcType=VARCHAR}, 
         #{createAt, jdbcType=TIMESTAMP}
         )
     </insert>
 
     <insert id="insertSelective" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-        insert into wine
+        insert into alcohol
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -39,8 +40,8 @@
             <if test="personName != null">
                 person_name,
             </if>
-            <if test="wineName != null">
-                wine_name,
+            <if test="alcoholName != null">
+                alcohol_name,
             </if>
             <if test="createAt != null">
                 create_at,
@@ -56,8 +57,8 @@
             <if test="personName != null">
                 #{personName, jdbcType=VARCHAR},
             </if>
-            <if test="wineName != null">
-                #{wineName, jdbcType=VARCHAR},
+            <if test="alcoholName != null">
+                #{alcoholName, jdbcType=VARCHAR},
             </if>
             <if test="createAt != null">
                 #{createAt, jdbcType=TIMESTAMP},
@@ -66,7 +67,7 @@
     </insert>
 
     <insert id="insertList" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-        insert into wine
+        insert into alcohol
         (
         <include refid="Base_Column_List" />
         )
@@ -76,20 +77,20 @@
         #{entity.id, jdbcType=BIGINT}, 
         #{entity.codeName, jdbcType=VARCHAR}, 
         #{entity.personName, jdbcType=VARCHAR}, 
-        #{entity.wineName, jdbcType=VARCHAR}, 
+        #{entity.alcoholName, jdbcType=VARCHAR}, 
         #{entity.createAt, jdbcType=TIMESTAMP}
         )
         </foreach>
     </insert>
 
     <delete id="deleteByPrimaryKey">
-        delete from wine
+        delete from alcohol
         where
         id = #{primaryKey, jdbcType=BIGINT}
     </delete>
 
     <delete id="delete">
-        delete from wine
+        delete from alcohol
         where
         <trim prefixOverrides="and">
             <if test="id != null">
@@ -101,8 +102,8 @@
             <if test="personName != null">
                 and person_name = #{personName, jdbcType=VARCHAR}
             </if>
-            <if test="wineName != null">
-                and wine_name = #{wineName, jdbcType=VARCHAR}
+            <if test="alcoholName != null">
+                and alcohol_name = #{alcoholName, jdbcType=VARCHAR}
             </if>
             <if test="createAt != null">
                 and create_at = #{createAt, jdbcType=TIMESTAMP}
@@ -111,11 +112,11 @@
     </delete>
 
     <delete id="updateByPrimaryKey">
-        update wine
+        update alcohol
         <set>
             code_name = #{codeName, jdbcType=VARCHAR},
             person_name = #{personName, jdbcType=VARCHAR},
-            wine_name = #{wineName, jdbcType=VARCHAR},
+            alcohol_name = #{alcoholName, jdbcType=VARCHAR},
             create_at = #{createAt, jdbcType=TIMESTAMP},
         </set>
         where
@@ -123,7 +124,7 @@
     </delete>
 
     <delete id="updateByPrimaryKeySelective">
-        update wine
+        update alcohol
         <set>
             <if test="codeName != null">
                 code_name = #{codeName, jdbcType=VARCHAR},
@@ -131,8 +132,8 @@
             <if test="personName != null">
                 person_name = #{personName, jdbcType=VARCHAR},
             </if>
-            <if test="wineName != null">
-                wine_name = #{wineName, jdbcType=VARCHAR},
+            <if test="alcoholName != null">
+                alcohol_name = #{alcoholName, jdbcType=VARCHAR},
             </if>
             <if test="createAt != null">
                 create_at = #{createAt, jdbcType=TIMESTAMP},
@@ -145,7 +146,7 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from wine
+        from alcohol
         where
         id = #{primaryKey, jdbcType=BIGINT}
     </select>
@@ -167,7 +168,7 @@
     </select>
 
     <select id="count" resultType="java.lang.Long">
-        select count(1) from wine
+        select count(1) from alcohol
     </select>
 
     <select id="page" resultMap="BaseResultMap">
@@ -177,7 +178,7 @@
     <sql id="select">
         select
         <include refid="Base_Column_List" />
-        from wine
+        from alcohol
         <include refid="selectByBean" />
     </sql>
 
