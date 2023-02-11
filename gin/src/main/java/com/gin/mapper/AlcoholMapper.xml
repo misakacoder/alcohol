@@ -186,4 +186,6 @@
         <where>
         </where>
     </sql>
+
+    <cache type="com.gin.cache.RedisCache" />
 </mapper>

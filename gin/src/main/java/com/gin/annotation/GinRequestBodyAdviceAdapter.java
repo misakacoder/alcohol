@@ -24,19 +24,19 @@ public class GinRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
 
     @Override
     public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) throws IOException {
-        log.info("@RequestBody before body read");
+        log.debug("@RequestBody before body read");
         return super.beforeBodyRead(inputMessage, parameter, targetType, converterType);
     }
 
     @Override
     public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
-        log.info("@RequestBody after body read");
+        log.debug("@RequestBody after body read");
         return super.afterBodyRead(body, inputMessage, parameter, targetType, converterType);
     }
 
     @Override
     public Object handleEmptyBody(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
-        log.info("@RequestBody empty body read");
+        log.debug("@RequestBody empty body read");
         return super.handleEmptyBody(body, inputMessage, parameter, targetType, converterType);
     }
 }

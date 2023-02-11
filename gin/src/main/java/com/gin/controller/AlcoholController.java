@@ -1,5 +1,6 @@
 package com.gin.controller;
 
+import cn.hutool.core.util.RandomUtil;
 import com.gin.base.BaseController;
 import com.gin.base.BaseList;
 import com.gin.base.BasePage;
@@ -11,10 +12,7 @@ import com.misaka.annotation.RateLimiter;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,5 +56,11 @@ public class AlcoholController extends BaseController {
         basePage.setPageSize(pageSize);
         basePage.setOrderBy("id desc");
         return alcoholService.page(basePage);
+    }
+
+    @PutMapping("")
+    @ApiOperation("修改")
+    public void update(@RequestBody Alcohol alcohol) {
+        alcoholService.updateByPrimaryKeySelective(alcohol);
     }
 }

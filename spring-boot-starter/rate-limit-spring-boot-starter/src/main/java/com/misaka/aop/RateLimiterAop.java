@@ -22,7 +22,7 @@ import java.util.StringJoiner;
 public class RateLimiterAop {
 
     @Autowired
-    private RedisTemplate<Object, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     @Qualifier("rateLimiterScript")
