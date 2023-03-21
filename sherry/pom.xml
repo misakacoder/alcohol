@@ -24,8 +24,9 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
+            <groupId>com.misaka</groupId>
+            <artifactId>korn</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

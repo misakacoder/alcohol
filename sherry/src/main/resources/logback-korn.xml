@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--动态加载扫描配置文件,扫描间隔时间单位默认毫秒-->
+<configuration scan="true" scanPeriod="10 seconds">
+    <include resource="com/korn/console-appender.xml"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

@@ -13,6 +13,7 @@
         <module>gin</module>
         <module>kir</module>
         <module>rye</module>
+        <module>korn</module>
         <module>sherry</module>
         <module>bourbon</module>
         <module>spring-boot-starter</module>
