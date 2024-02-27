@@ -1,5 +1,6 @@
 package com.korn.spi;
 
+import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.Configurator;
 import ch.qos.logback.core.spi.ContextAwareBase;
@@ -10,6 +11,7 @@ import com.korn.core.KornConfigurator;
 import com.korn.pattern.KornConsoleAppender;
 
 import java.net.URL;
+import java.util.List;
 
 public class KornSpiConfigurator extends ContextAwareBase implements Configurator {
 
@@ -48,9 +50,24 @@ public class KornSpiConfigurator extends ContextAwareBase implements Configurato
 
     private void clearStatusManager(LoggerContext loggerContext) {
         StatusManager statusManager = loggerContext.getStatusManager();
-        boolean noError = statusManager.getCopyOfStatusList().stream().noneMatch(p -> p.getLevel() == Status.ERROR);
-        if (noError) {
-            statusManager.clear();
+        List<Status> statusList = statusManager.getCopyOfStatusList();
+        for (Status status : statusList) {
+            int level = status.getLevel();
+            Class<?> cls = status.getOrigin().getClass();
+            String message = status.getMessage();
+            Logger logger = loggerContext.getLogger(cls);
+            switch (level) {
+                case Status.INFO:
+                    logger.info(message);
+                    break;
+                case Status.WARN:
+                    logger.warn(message);
+                    break;
+                case Status.ERROR:
+                    logger.error(message);
+                    break;
+            }
         }
+        statusManager.clear();
     }
 }
