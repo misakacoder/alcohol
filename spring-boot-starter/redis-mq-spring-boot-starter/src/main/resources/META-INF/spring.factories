@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.misaka.config.RedisMQConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.misaka.config.RedisMQAutoConfiguration

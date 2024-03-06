@@ -1,3 +1,3 @@
 org.springframework.boot.env.PropertySourceLoader=com.misaka.env.JsonPropertySourceLoader
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.misaka.config.BeanAutoAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.misaka.config.BeanAutoConfiguration
 org.springframework.context.ApplicationContextInitializer=com.misaka.support.ValueAnnotationBindObjectSupport
