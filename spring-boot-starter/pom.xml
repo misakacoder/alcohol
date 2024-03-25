@@ -22,5 +22,6 @@
         <module>auth-spring-boot-starter</module>
         <module>kir-spring-boot-starter</module>
         <module>redis-mq-spring-boot-starter</module>
+        <module>lock-spring-boot-stater</module>
     </modules>
 </project>
