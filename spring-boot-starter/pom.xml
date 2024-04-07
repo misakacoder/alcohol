@@ -23,5 +23,6 @@
         <module>kir-spring-boot-starter</module>
         <module>redis-mq-spring-boot-starter</module>
         <module>lock-spring-boot-stater</module>
+        <module>feign-spring-boot-starter</module>
     </modules>
 </project>
