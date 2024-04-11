@@ -36,7 +36,7 @@ public class Kir implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (Object.class.equals(method.getDeclaringClass())) {
-            return method.invoke(this, args);
+            throw new UnsupportedOperationException();
         }
         RequestMetadata metadata = getMetadata(method);
         if (metadata == null) {
@@ -166,11 +166,10 @@ public class Kir implements InvocationHandler {
                     if (requestBody != null) {
                         bodyBuilder.setLength(0);
                         bodyBuilder.append(builder.encoder.encode(value));
-                    } else if (requestParam != null) {
+                    }
+                    if (requestParam != null) {
                         String name = requestParam.value();
-                        if (value instanceof Character || value instanceof String || value instanceof Number || value instanceof Boolean) {
-                            form.put(name, value.toString());
-                        } else if (value instanceof List) {
+                        if (value instanceof List) {
                             List<?> data = (List<?>) value;
                             String valueString = data.stream()
                                     .filter(Objects::nonNull)
@@ -180,6 +179,9 @@ public class Kir implements InvocationHandler {
                         } else if (value instanceof File) {
                             if (metadata.getMethod() == RequestMethod.GET) {
                                 throw new RuntimeException("Http method GET do not support upload file");
+                            }
+                            if (bodyBuilder.length() > 0) {
+                                throw new RuntimeException("Request body is not empty, you cannot upload file");
                             }
                             form.put(name, value);
                         } else {

@@ -74,7 +74,7 @@ public class HttpRequestBuilder {
         HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(this.url))
                 .timeout(timeout);
-        if (header != null) {
+        if (!header.isEmpty()) {
             header.forEach((k, v) -> v.forEach(p -> builder.header(k, p)));
         }
         HttpRequest.BodyPublisher publisher = HttpRequest.BodyPublishers.noBody();

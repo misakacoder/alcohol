@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class MultipartBody {
 
-    private static final String BOUNDARY = "Misaka_" + UUID.randomUUID().toString().replace("-", "");
+    private static final String BOUNDARY = "kir_" + UUID.randomUUID().toString().replace("-", "");
     private static final String BOUNDARY_START = String.format("--%s\r\n", BOUNDARY);
     private static final String BOUNDARY_END = String.format("--%s--\r\n", BOUNDARY);
     private static final String CONTENT_DISPOSITION_TEMPLATE = "Content-Disposition: form-data; name=\"%s\"\r\n\r\n";
