@@ -28,9 +28,17 @@ public class HttpRequestBuilder {
         return this;
     }
 
+    public String url() {
+        return url;
+    }
+
     public HttpRequestBuilder method(RequestMethod method) {
         this.method = method;
         return this;
+    }
+
+    public RequestMethod method() {
+        return method;
     }
 
     public HttpRequestBuilder timeout(long timeout) {
@@ -38,10 +46,18 @@ public class HttpRequestBuilder {
         return this;
     }
 
+    public Duration timeout() {
+        return timeout;
+    }
+
     public HttpRequestBuilder form(Map<String, Object> form) {
         this.form = form;
         this.body = null;
         return this;
+    }
+
+    public Map<String, Object> form() {
+        return form;
     }
 
     public HttpRequestBuilder header(String name, String value) {
@@ -58,10 +74,18 @@ public class HttpRequestBuilder {
         return this;
     }
 
+    public Map<String, List<String>> header() {
+        return header;
+    }
+
     public HttpRequestBuilder body(String body) {
         this.body = body;
         this.form = null;
         return this;
+    }
+
+    public String body() {
+        return body;
     }
 
     public HttpRequest build() {
