@@ -7,7 +7,7 @@ spring:
   application:
     name: gin
   profiles:
-    active: gin
+    active: gin,dev
 
 bourbon:
   enable: false
