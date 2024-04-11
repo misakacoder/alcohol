@@ -246,7 +246,7 @@ public class Kir implements InvocationHandler {
 
         private Decoder decoder = new GsonDecoder();
 
-        private List<Interceptor> interceptors = new ArrayList<>();
+        private final List<Interceptor> interceptors = new ArrayList<>();
 
         public Builder url(String url) {
             this.url = url;

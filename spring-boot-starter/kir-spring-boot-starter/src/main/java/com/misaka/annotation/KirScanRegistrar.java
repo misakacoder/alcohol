@@ -1,6 +1,6 @@
 package com.misaka.annotation;
 
-import com.misaka.factory.KirClientFactoryBean;
+import com.misaka.factory.KirFactoryBean;
 import com.rye.util.ClassUtil;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
@@ -18,7 +18,7 @@ public class KirScanRegistrar implements ImportBeanDefinitionRegistrar {
         Set<Class<?>> classes = ClassUtil.scanPackageByAnnotation("", Kir.class);
         for (Class<?> cls : classes) {
             GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-            beanDefinition.setBeanClass(KirClientFactoryBean.class);
+            beanDefinition.setBeanClass(KirFactoryBean.class);
             beanDefinition.getPropertyValues().add("objectType", cls);
             //AUTOWIRE_NO: 默认的装配模式，这种方式不能进行自动注入，需使用@Resource或@Autowired注解手动注入
             //AUTOWIRE_BY_NAME: 通过属性的名称来自动注入，未找到bean则不会注入。需要提供set方法，因为是通过set方法来赋值的
