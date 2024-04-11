@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Import(KirScanRegistrar.class)
 public @interface KirScan {
-    String[] basePackages() default {};
+
 }
