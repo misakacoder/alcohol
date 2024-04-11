@@ -91,6 +91,9 @@ public class Kir implements InvocationHandler {
             return filepath;
         } else {
             HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 200) {
+                throw new RuntimeException(String.format("Request failed, the response status code is %s, and the response body is %s", response.statusCode(), response.body()));
+            }
             return Decoder.decode(response.body(), method, builder.decoder);
         }
     }
