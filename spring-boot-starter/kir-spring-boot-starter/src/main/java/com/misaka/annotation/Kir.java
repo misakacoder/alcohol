@@ -1,5 +1,7 @@
 package com.misaka.annotation;
 
+import com.kir.http.Interceptor;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,4 +14,6 @@ public @interface Kir {
     String value();
 
     long timeout() default 0L;
+
+    Class<? extends Interceptor>[] interceptors() default {};
 }

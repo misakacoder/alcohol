@@ -67,6 +67,11 @@ public class Kir implements InvocationHandler {
         }
         requestBuilder.url(StringUtil.trim(builder.url, "/") + "/" + path);
         log.debug("\n{}", requestBuilder);
+        for (Interceptor interceptor : builder.interceptors) {
+            if (interceptor != null) {
+                interceptor.intercept(requestBuilder);
+            }
+        }
         HttpRequest httpRequest = requestBuilder.build();
         DownloadFile saveFile = method.getAnnotation(DownloadFile.class);
         Class<?> returnType = method.getReturnType();
@@ -238,6 +243,8 @@ public class Kir implements InvocationHandler {
 
         private Decoder decoder = new GsonDecoder();
 
+        private List<Interceptor> interceptors = new ArrayList<>();
+
         public Builder url(String url) {
             this.url = url;
             return this;
@@ -267,6 +274,20 @@ public class Kir implements InvocationHandler {
         public Builder decoder(Decoder decoder) {
             if (decoder != null) {
                 this.decoder = decoder;
+            }
+            return this;
+        }
+
+        public Builder interceptor(Interceptor interceptor) {
+            if (interceptor != null) {
+                this.interceptors.add(interceptor);
+            }
+            return this;
+        }
+
+        public Builder interceptors(List<Interceptor> interceptors) {
+            if (interceptors != null) {
+                this.interceptors.addAll(interceptors);
             }
             return this;
         }
