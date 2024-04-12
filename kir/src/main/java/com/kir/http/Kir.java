@@ -65,13 +65,14 @@ public class Kir implements InvocationHandler {
         } else if (StringUtil.isNotBlank(body)) {
             requestBuilder.body(body);
         }
-        requestBuilder.url(StringUtil.trim(builder.url, "/") + "/" + path);
-        log.debug("\n{}", requestBuilder);
+        requestBuilder.url(builder.url);
         for (Interceptor interceptor : builder.interceptors) {
             if (interceptor != null) {
                 interceptor.intercept(requestBuilder);
             }
         }
+        requestBuilder.url(requestBuilder.url() + "/" + path);
+        log.debug("\n{}", requestBuilder);
         HttpRequest httpRequest = requestBuilder.build();
         DownloadFile saveFile = method.getAnnotation(DownloadFile.class);
         Class<?> returnType = method.getReturnType();
