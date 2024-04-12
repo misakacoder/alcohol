@@ -25,7 +25,7 @@ public class KirFactoryBean implements FactoryBean<Object>, ApplicationContextAw
     @Override
     public Object getObject() throws Exception {
         Kir kir = objectType.getAnnotation(Kir.class);
-        String value = kir.value();
+        String value = kir.url();
         long timeout = kir.timeout();
         value = applicationContext.getEnvironment().resolvePlaceholders(value);
         if (StringUtil.isBlank(value)) {

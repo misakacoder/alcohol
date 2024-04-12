@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Kir {
 
-    String value();
+    String url();
 
     long timeout() default 0L;
 
