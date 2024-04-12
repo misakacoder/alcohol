@@ -24,5 +24,6 @@
         <module>redis-mq-spring-boot-starter</module>
         <module>lock-spring-boot-stater</module>
         <module>feign-spring-boot-starter</module>
+        <module>scotch-spring-boot-starter</module>
     </modules>
 </project>

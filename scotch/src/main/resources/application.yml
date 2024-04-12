@@ -1,0 +1,12 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: scotch
+
+auth:
+  basic:
+    enable: true
+    username: scotch
+    password: scotch

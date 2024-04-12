@@ -6,7 +6,7 @@ import com.kir.annotation.HttpHeaders;
 import com.kir.annotation.PathVariable;
 import com.misaka.annotation.Kir;
 
-@Kir(value = "${kir.hero.url}", timeout = 3L)
+@Kir(url = "${kir.hero.url}", timeout = 3L)
 @HttpHeaders(@HttpHeader(name = "User-Agent", value = "Kir"))
 public interface Hero {
 

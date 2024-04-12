@@ -17,6 +17,7 @@
         <module>sherry</module>
         <module>bourbon</module>
         <module>spring-boot-starter</module>
+        <module>scotch</module>
     </modules>
 
     <properties>
