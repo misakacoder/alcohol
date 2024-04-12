@@ -7,9 +7,13 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface InterceptorType {
+public @interface InterceptorScope {
 
-    InterceptScope type() default InterceptScope.ALL;
+    Scope scope() default Scope.ALL;
 
-    Class<?>[] scope() default {};
+    Class<?>[] services() default {};
+
+    enum Scope {
+        ALL, SOME
+    }
 }

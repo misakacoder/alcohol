@@ -3,8 +3,7 @@ package com.misaka.factory;
 import com.kir.decoder.JacksonDecoder;
 import com.kir.encoder.JacksonEncoder;
 import com.kir.http.Interceptor;
-import com.misaka.annotation.InterceptorType;
-import com.misaka.annotation.InterceptScope;
+import com.misaka.annotation.InterceptorScope;
 import com.misaka.annotation.Kir;
 import com.rye.util.StringUtil;
 import org.springframework.beans.BeansException;
@@ -32,15 +31,15 @@ public class KirFactoryBean implements FactoryBean<Object>, ApplicationContextAw
             throw new RuntimeException(String.format("The value of the annotation Kir in %s is blank", objectType.getName()));
         }
         Set<Interceptor> interceptors = new LinkedHashSet<>();
-        Map<String, Object> beans = applicationContext.getBeansWithAnnotation(InterceptorType.class);
+        Map<String, Object> beans = applicationContext.getBeansWithAnnotation(InterceptorScope.class);
         beans.forEach((k, v) -> {
-            InterceptorType interceptorType = v.getClass().getAnnotation(InterceptorType.class);
+            InterceptorScope interceptorScope = v.getClass().getAnnotation(InterceptorScope.class);
             if ( v instanceof Interceptor) {
                 boolean addInterceptor = false;
-                if (interceptorType.type() == InterceptScope.ALL) {
+                if (interceptorScope.scope() == InterceptorScope.Scope.ALL) {
                     addInterceptor = true;
                 } else {
-                    Class<?>[] kirServices = interceptorType.scope();
+                    Class<?>[] kirServices = interceptorScope.services();
                     if (Arrays.stream(kirServices).anyMatch(p -> p == objectType)) {
                         addInterceptor = true;
                     }
