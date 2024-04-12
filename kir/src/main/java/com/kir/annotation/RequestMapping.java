@@ -13,7 +13,7 @@ public @interface RequestMapping {
 
     String value() default "";
 
-    RequestMethod method();
+    RequestMethod method() default RequestMethod.GET;
 
     long timeout() default 0L;
 }

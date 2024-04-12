@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Import(KirScanRegistrar.class)
-public @interface KirScan {
+public @interface EnableKir {
 
 }

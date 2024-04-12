@@ -16,3 +16,11 @@ bourbon:
     enable: true
     username: bourbon
     password: bourbon
+
+scotch:
+  enable: true
+  url: http://localhost:9999
+  basic:
+    enable: true
+    username: scotch
+    password: scotch
