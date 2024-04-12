@@ -115,14 +115,16 @@ public class Kir implements InvocationHandler {
         mappingList.add(method.getAnnotation(PutMapping.class));
         mappingList.add(method.getAnnotation(DeleteMapping.class));
         for (Annotation mapping : mappingList) {
-            try {
-                Class<? extends Annotation> annotationClass = mapping.annotationType();
-                Method value = annotationClass.getDeclaredMethod("value");
-                Method timeout = annotationClass.getDeclaredMethod("timeout");
-                RequestMethod requestMethod = annotationClass.getAnnotation(RequestMapping.class).method();
-                return new RequestMetadata(pathJoin(pathPrefix, (String) value.invoke(mapping)), requestMethod, (Long) timeout.invoke(mapping));
-            } catch (Exception e) {
-                log.error("", e);
+            if (mapping != null) {
+                try {
+                    Class<? extends Annotation> annotationClass = mapping.annotationType();
+                    Method value = annotationClass.getDeclaredMethod("value");
+                    Method timeout = annotationClass.getDeclaredMethod("timeout");
+                    RequestMethod requestMethod = annotationClass.getAnnotation(RequestMapping.class).method();
+                    return new RequestMetadata(pathJoin(pathPrefix, (String) value.invoke(mapping)), requestMethod, (Long) timeout.invoke(mapping));
+                } catch (Exception e) {
+                    log.error("", e);
+                }
             }
         }
         return null;
