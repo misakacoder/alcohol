@@ -18,7 +18,7 @@ public class ScotchAuthInterceptor implements Interceptor {
     @Override
     public void intercept(HttpRequestBuilder builder) {
         ScotchProperties.BasicAuth basicAuth = scotchProperties.getBasic();
-        if (basicAuth.isEnable()) {
+        if (basicAuth.isEnabled()) {
             byte[] bytes = String.format("%s:%s", basicAuth.getUsername(), basicAuth.getPassword()).getBytes(StandardCharsets.UTF_8);
             String authorization = "Basic " + Base64Utils.encodeToString(bytes);
             builder.header("Authorization", authorization);

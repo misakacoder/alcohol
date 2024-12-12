@@ -1,6 +1,5 @@
 package com.bourbon.refresh;
 
-import com.bourbon.processor.BourbonEnvironmentPostProcessor;
 import com.bourbon.properties.BourbonProperties;
 import com.bourbon.util.BourbonUtil;
 import com.bourbon.util.HttpUtil;
@@ -47,7 +46,7 @@ public class RefreshEnvRunner implements CommandLineRunner, Runnable {
 
     @Override
     public void run() {
-        if (bourbonProperties.isEnable()) {
+        if (bourbonProperties.isEnabled()) {
             String url = bourbonProperties.getUrl();
             String[] headers = BourbonUtil.getAuthorizationHeader(bourbonProperties.getBasic());
             if (StringUtils.hasText(url) && StringUtils.hasText(appName)) {
@@ -57,7 +56,7 @@ public class RefreshEnvRunner implements CommandLineRunner, Runnable {
                         if (response.statusCode() == 200) {
                             Map<String, Object> applicationMap = objectMapper.readValue(response.body(), new TypeReference<>() {
                             });
-                            environment.getPropertySources().replace(BourbonEnvironmentPostProcessor.BOURBON_PROPERTY_SOURCE_NAME, new MapPropertySource(BourbonEnvironmentPostProcessor.BOURBON_PROPERTY_SOURCE_NAME, applicationMap));
+                            environment.getPropertySources().replace(appName, new MapPropertySource(appName, applicationMap));
                             RefreshEnvScope.clear();
                             log.info("Load bourbon configuration success");
                         }

@@ -1,2 +1,4 @@
 org.springframework.boot.env.EnvironmentPostProcessor=com.bourbon.processor.BourbonEnvironmentPostProcessor
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.bourbon.config.BourbonAutoConfiguration
+org.springframework.boot.context.config.ConfigDataLoader=com.bourbon.loader.BourbonConfigDataLoader
+org.springframework.boot.context.config.ConfigDataLocationResolver=com.bourbon.loader.BourbonConfigDataLocationResolver

@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Bean;
 
 import javax.servlet.Filter;
 
-import static com.misaka.config.AuthAutoConfiguration.BASIC_AUTH_ENABLE_KEY;
+import static com.misaka.config.AuthAutoConfiguration.BASIC_AUTH_ENABLE_PROPERTY_NAME;
 
-@ConditionalOnProperty(value = BASIC_AUTH_ENABLE_KEY, havingValue = "true")
+@ConditionalOnProperty(value = BASIC_AUTH_ENABLE_PROPERTY_NAME, havingValue = "true")
 public class AuthAutoConfiguration {
 
-    public static final String BASIC_AUTH_ENABLE_KEY = "auth.basic.enable";
+    public static final String BASIC_AUTH_ENABLE_PROPERTY_NAME = "auth.basic.enabled";
 
     @Bean
     public BasicAuthProperties basicAuthProperties() {

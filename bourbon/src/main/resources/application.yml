@@ -7,7 +7,7 @@ spring:
 
 bourbon:
   basic:
-    enable: true
+    enabled: true
     username: bourbon
     password: bourbon
   search-location: classpath:config/

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.List;
 
 @ComponentScan("com.scotch")
-@ConditionalOnProperty(name = "scotch.enable", havingValue = "true")
+@ConditionalOnProperty(name = "scotch.enabled", havingValue = "true")
 public class ScotchAutoConfiguration {
 
     @Autowired

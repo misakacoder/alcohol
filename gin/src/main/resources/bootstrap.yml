@@ -8,19 +8,23 @@ spring:
     name: gin
   profiles:
     active: gin,dev
+  config:
+    import:
+      - bourbon:gin?profile=dev
+      - bourbon:info?profile=dev
 
 bourbon:
-  enable: false
+  enabled: true
   url: http://localhost:8888
   basic:
-    enable: true
+    enabled: true
     username: bourbon
     password: bourbon
 
 scotch:
-  enable: true
+  enabled: true
   url: http://localhost:9999
   basic:
-    enable: true
+    enabled: true
     username: scotch
     password: scotch

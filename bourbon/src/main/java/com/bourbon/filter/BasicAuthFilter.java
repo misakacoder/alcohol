@@ -26,7 +26,7 @@ public class BasicAuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         BasicAuth basicAuth = bourbonProperties.getBasic();
-        if (basicAuth != null && basicAuth.isEnable()) {
+        if (basicAuth != null && basicAuth.isEnabled()) {
             String username = basicAuth.getUsername();
             String password = basicAuth.getPassword();
             byte[] bytes = String.format("%s:%s", username, password).getBytes(StandardCharsets.UTF_8);

@@ -23,16 +23,18 @@ public class ConfigLoader {
     @Autowired
     private BourbonProperties bourbonProperties;
 
-    public Map<String, Object> load(String appName, List<String> profiles) {
+    public Map<String, Object> load(String filename, Boolean isAppName, List<String> profiles) {
         Map<String, Object> configMap = new HashMap<>();
         String searchLocations = bourbonProperties.getSearchLocation();
         if (StringUtils.hasText(searchLocations)) {
             searchLocations = !searchLocations.endsWith(File.separator) ? searchLocations + File.separator : searchLocations;
             List<String> locationList = new ArrayList<>();
-            locationList.add(searchLocations + APPLICATION_CONFIG_NAME);
-            locationList.add(searchLocations + appName + CONFIG_EXT);
+            if (isAppName != null && isAppName) {
+                locationList.add(searchLocations + APPLICATION_CONFIG_NAME);
+            }
+            locationList.add(searchLocations + filename + CONFIG_EXT);
             String finalSearchLocations = searchLocations;
-            profiles.stream().map(p -> String.format("%s%s-%s%s", finalSearchLocations, appName, p, CONFIG_EXT)).forEach(locationList::add);
+            profiles.stream().map(p -> String.format("%s%s-%s%s", finalSearchLocations, filename, p, CONFIG_EXT)).forEach(locationList::add);
             OriginTrackedYamlLoader yamlLoader = new OriginTrackedYamlLoader();
             yamlLoader.setResources(createResources(locationList));
             return yamlLoader.loadAsMap();

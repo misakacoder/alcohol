@@ -14,7 +14,7 @@ import org.springframework.core.env.PropertySource;
 
 public class SecurityBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
 
-    private static final String PASSWORD_KEY = "config.encryptor.password";
+    private static final String PASSWORD_PROPERTY_NAME = "config.encryptor.password";
     private static final Logger log = LoggerFactory.getLogger(SecurityBeanFactoryPostProcessor.class);
 
     private final ConfigurableEnvironment environment;
@@ -26,7 +26,7 @@ public class SecurityBeanFactoryPostProcessor implements BeanFactoryPostProcesso
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         MutablePropertySources propertySources = environment.getPropertySources();
-        String password = environment.getProperty(PASSWORD_KEY, "");
+        String password = environment.getProperty(PASSWORD_PROPERTY_NAME, "");
         if (password.length() == 16) {
             for (PropertySource<?> propertySource : propertySources) {
                 if (propertySource instanceof MapPropertySource) {

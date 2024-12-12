@@ -7,6 +7,6 @@ spring:
 
 auth:
   basic:
-    enable: true
+    enabled: true
     username: scotch
     password: scotch

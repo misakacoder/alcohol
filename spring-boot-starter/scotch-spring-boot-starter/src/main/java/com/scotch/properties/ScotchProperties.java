@@ -10,18 +10,18 @@ public class ScotchProperties {
 
     public static final String PREFIX = "scotch";
 
-    private boolean enable = false;
+    private boolean enabled = false;
 
     private String url;
 
     private BasicAuth basic;
 
-    public boolean isEnable() {
-        return enable;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getUrl() {
@@ -42,18 +42,18 @@ public class ScotchProperties {
 
     public static class BasicAuth {
 
-        private boolean enable = false;
+        private boolean enabled = false;
 
         private String username;
 
         private String password;
 
-        public boolean isEnable() {
-            return enable;
+        public boolean isEnabled() {
+            return enabled;
         }
 
-        public void setEnable(boolean enable) {
-            this.enable = enable;
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
         }
 
         public String getUsername() {

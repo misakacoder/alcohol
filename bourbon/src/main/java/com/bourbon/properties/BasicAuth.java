@@ -2,18 +2,18 @@ package com.bourbon.properties;
 
 public class BasicAuth {
 
-    private boolean enable = false;
+    private boolean enabled = false;
 
     private String username;
 
     private String password;
 
-    public boolean isEnable() {
-        return enable;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getUsername() {

@@ -35,13 +35,13 @@ public class BourbonController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping("/config/{appName}")
-    public Map<String, Object> config(@PathVariable String appName, String profile) {
+    @GetMapping("/config/{filename}")
+    public Map<String, Object> config(@PathVariable String filename, Boolean isAppName, String profile) {
         List<String> profiles = new ArrayList<>();
         if (StringUtils.hasText(profile)) {
             profiles = Arrays.asList(profile.split(","));
         }
-        return configLoader.load(appName, profiles);
+        return configLoader.load(filename, isAppName, profiles);
     }
 
     @GetMapping("/config")
@@ -65,8 +65,8 @@ public class BourbonController {
     }
 
     @GetMapping("/publish/config/{appName}")
-    public void publish(@PathVariable String appName, String profile) {
-        Map<String, Object> configMap = config(appName, profile);
+    public void publish(@PathVariable String appName, Boolean isAppName, String profile) {
+        Map<String, Object> configMap = config(appName, isAppName, profile);
         List<AsyncTask> taskList = contextMap.remove(appName);
         if (taskList != null) {
             for (AsyncTask task : taskList) {
