@@ -34,7 +34,7 @@ public class KirFactoryBean implements FactoryBean<Object>, ApplicationContextAw
         Map<String, Object> beans = applicationContext.getBeansWithAnnotation(InterceptorScope.class);
         beans.forEach((k, v) -> {
             InterceptorScope interceptorScope = v.getClass().getAnnotation(InterceptorScope.class);
-            if ( v instanceof Interceptor) {
+            if (v instanceof Interceptor) {
                 boolean addInterceptor = false;
                 if (interceptorScope.scope() == InterceptorScope.Scope.ALL) {
                     addInterceptor = true;
