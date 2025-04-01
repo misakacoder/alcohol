@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.bourbon.vermouth.entity";
+
+package com.bourbon.vermouth.entity;
+
+message ConfigQuery {
+  string filename = 1;
+  bool  isAppName = 2;
+  repeated string profile = 3;
+}
+
+message ConfigQueryResponse {
+  map<string, string> configs = 1;
+}

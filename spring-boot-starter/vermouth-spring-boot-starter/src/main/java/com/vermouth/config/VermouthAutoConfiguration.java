@@ -2,7 +2,7 @@ package com.vermouth.config;
 
 import com.alipay.sofa.jraft.rpc.RpcProcessor;
 import com.vermouth.core.RaftServer;
-import com.vermouth.init.RaftServerStartupListener;
+import com.vermouth.listener.RaftServerStartupListener;
 import com.vermouth.processor.RequestProcessor;
 import com.vermouth.properties.RaftProperties;
 import com.vermouth.properties.VermouthProperties;
@@ -43,9 +43,9 @@ public class VermouthAutoConfiguration {
         RaftServer raftServer = new RaftServer(raftProperties);
         raftServer.addRpcProcessor(rpcProcessors);
         raftServer.addRequestProcessor(requestProcessors);
-        listeners.forEach(p -> p.beforeStartup(raftServer));
+        listeners.forEach(p -> p.before(raftServer));
         raftServer.startup();
-        listeners.forEach(p -> p.afterStartup(raftServer));
+        listeners.forEach(p -> p.after(raftServer));
         return raftServer;
     }
 }

@@ -19,7 +19,6 @@
         <module>bourbon</module>
         <module>vermouth</module>
         <module>spring-boot-starter</module>
-        <module>spring-boot-starter/vermouth-spring-boot-starter</module>
     </modules>
 
     <properties>
