@@ -18,6 +18,7 @@ import java.util.Map;
 public class ConfigLoader {
 
     private static final String CONFIG_EXT = ".yml";
+
     private static final String APPLICATION_CONFIG_NAME = "application" + CONFIG_EXT;
 
     @Autowired

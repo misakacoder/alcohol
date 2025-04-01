@@ -11,3 +11,11 @@ bourbon:
     username: bourbon
     password: bourbon
   search-location: classpath:config/
+
+vermouth:
+  enabled: true
+  home: data\${server.port}
+  nodes:
+    - 192.168.1.87:5545
+    - 192.168.1.87:7767
+    - 192.168.1.87:8878

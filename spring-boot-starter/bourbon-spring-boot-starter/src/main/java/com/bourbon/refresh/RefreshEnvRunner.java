@@ -52,7 +52,7 @@ public class RefreshEnvRunner implements CommandLineRunner, Runnable {
             if (StringUtils.hasText(url) && StringUtils.hasText(appName)) {
                 while (true) {
                     try {
-                        HttpResponse<String> response = HttpUtil.get(String.format("%s/bourbon/config?appName=%s", url, appName), Duration.ofSeconds(80L), headers);
+                        HttpResponse<String> response = HttpUtil.get(String.format("%s/bourbon/listen?appName=%s", url, appName), Duration.ofSeconds(80L), headers);
                         if (response.statusCode() == 200) {
                             Map<String, Object> applicationMap = objectMapper.readValue(response.body(), new TypeReference<>() {
                             });
