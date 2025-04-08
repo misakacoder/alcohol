@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.misaka</groupId>
         <artifactId>spring-boot-starter</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>scotch-spring-boot-starter</artifactId>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>kir-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

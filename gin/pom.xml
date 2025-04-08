@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.misaka</groupId>
         <artifactId>alcohol</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>gin</artifactId>
@@ -45,37 +45,37 @@
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>mask-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>rate-limit-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>config-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>bourbon-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>auth-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>kir-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>scotch-spring-boot-starter</artifactId>
-            <version>${revision}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
