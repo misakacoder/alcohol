@@ -20,14 +20,12 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: 'maven'
-          settings-path: ${{ github.workspace }}
 
-      - name: Generate settings.xml
+      - name: Configure Maven Setting
         run: |
-          cat <<EOF > ${{ github.workspace }}/settings.xml
-          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+          mkdir -p ~/.m2
+          cat <<EOF > ~/.m2/settings.xml
+          <settings>
             <servers>
               <server>
                 <id>${{ github.actor }}</id>
@@ -36,9 +34,9 @@ jobs:
               </server>
             </servers>
           </settings>
-          EOF  
+          EOF
 
       - name: Build and Publish
-        run: bash deploy_maven.sh
+        run: mvn -B clean deploy -pl korn -Dmaven.test.skip=true
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
