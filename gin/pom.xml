@@ -95,6 +95,33 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-config</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/config</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>**/*</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
@@ -143,10 +170,11 @@
                         <param>Linux</param>
                     </platforms>
                     <vmOptions>-Xms2048m -Xmx4096m</vmOptions>
-                    <configFiles>
-                        <configFile>src/main/resources</configFile>
-                    </configFiles>
                     <copyResources>
+                        <copyResource>
+                            <from>${project.build.directory}/config</from>
+                            <to>config</to>
+                        </copyResource>
                         <copyResource>
                             <from>${project.build.directory}/lib</from>
                             <to>lib</to>

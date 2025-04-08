@@ -5,6 +5,8 @@ import com.sherry.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.Properties;
@@ -33,7 +35,8 @@ public class GeneratorConfig {
 
     public GeneratorConfig(String configurationFile) {
         Properties properties = new Properties();
-        try (InputStream is = FileUtil.getClasspathResource(configurationFile)) {
+        File configuration = new File(configurationFile);
+        try (InputStream is = configuration.exists() ? new FileInputStream(configuration) : FileUtil.getClasspathResource(configurationFile)) {
             properties.load(is);
             Field[] fields = GeneratorConfig.class.getDeclaredFields();
             for (Field field : fields) {
