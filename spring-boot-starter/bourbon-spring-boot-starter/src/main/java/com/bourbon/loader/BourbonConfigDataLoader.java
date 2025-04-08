@@ -7,6 +7,7 @@ import org.springframework.boot.context.config.ConfigDataLoaderContext;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.core.env.MapPropertySource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BourbonConfigDataLoader implements ConfigDataLoader<BourbonConfigDataResource> {
@@ -14,9 +15,10 @@ public class BourbonConfigDataLoader implements ConfigDataLoader<BourbonConfigDa
     @Override
     public ConfigData load(ConfigDataLoaderContext context, BourbonConfigDataResource resource) throws ConfigDataResourceNotFoundException {
         MapPropertySource propertySource = BourbonUtil.pullConfig(resource.getBourbonProperties(), resource.getFilename(), resource.isAppName(), resource.getProfile());
+        List<MapPropertySource> propertySourceList = new ArrayList<>();
         if (propertySource != null) {
-            return new ConfigData(List.of(propertySource));
+            propertySourceList.add(propertySource);
         }
-        return null;
+        return new ConfigData(propertySourceList);
     }
 }

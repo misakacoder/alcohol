@@ -23,7 +23,7 @@ public class GinController {
 
     private static final Logger log = LoggerFactory.getLogger(GinController.class);
 
-    @Autowired
+    @Autowired(required = false)
     private Gin gin;
 
     @Autowired

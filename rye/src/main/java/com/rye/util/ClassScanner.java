@@ -36,6 +36,7 @@ public class ClassScanner {
 
     public Set<Class<?>> scan() {
         try {
+            //扫描开发环境下所有的classes
             Enumerations<URL> enumerations = new Enumerations<>(CLASS_LOADER.getResources(this.packagePath));
             for (URL url : enumerations) {
                 String protocol = url.getProtocol();
@@ -49,6 +50,12 @@ public class ClassScanner {
                     default:
                         break;
                 }
+            }
+
+            //扫描classpath下的所有jar
+            String[] paths = System.getProperty("java.class.path").split(File.pathSeparator);
+            for (String path : paths) {
+                scanFile(new File(path), null);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -89,7 +96,7 @@ public class ClassScanner {
         Enumerations<JarEntry> enumerations = new Enumerations<>(jarFile.entries());
         for (JarEntry jarEntry : enumerations) {
             String filename = StringUtil.trimPrefix(jarEntry.getName(), "/");
-            if (filename.startsWith(packagePath + "/") && filename.endsWith(CLASS_SUFFIX) && !jarEntry.isDirectory()) {
+            if ((StringUtil.isBlank(packagePath) || filename.startsWith(packagePath)) && filename.endsWith(CLASS_SUFFIX) && !jarEntry.isDirectory()) {
                 String className = StringUtil.trimSuffix(filename, CLASS_SUFFIX).replace('/', '.');
                 add(className);
             }
@@ -98,10 +105,10 @@ public class ClassScanner {
 
     private void add(String name) {
         Class<?> cls = loadClass(name);
-        boolean hasClass = cls != null;
-        boolean isValid = classFilter == null || Objects.requireNonNullElse(classFilter.apply(cls), Boolean.FALSE);
-        if (hasClass && isValid) {
-            classes.add(cls);
+        if (cls != null) {
+            if (classFilter == null || Objects.requireNonNullElse(classFilter.apply(cls), Boolean.FALSE)) {
+                classes.add(cls);
+            }
         }
     }
 
@@ -112,8 +119,8 @@ public class ClassScanner {
             // 由于依赖库导致的类无法加载，直接跳过此类
         } catch (UnsupportedClassVersionError e) {
             // 版本导致的不兼容的类，跳过
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ignored) {
+
         }
         return null;
     }

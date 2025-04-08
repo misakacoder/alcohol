@@ -12,7 +12,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -22,12 +23,14 @@ import java.util.Map;
 @Order(Integer.MIN_VALUE)
 public class BourbonEnvironmentPostProcessor implements EnvironmentPostProcessor {
 
+    private static final String[] CONFIG_LOCATIONS = {"file:./config/", "file:./", "classpath:/config/", "classpath:/"};
+
     private static final String CONFIG_NAME = "bootstrap.yml";
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        ClassPathResource bootstrap = new ClassPathResource(CONFIG_NAME);
-        if (!bootstrap.exists()) {
+        Resource bootstrap = scanBoostrapResource();
+        if (bootstrap == null) {
             throw new RuntimeException(String.format("Application run failed, config %s not found!", CONFIG_NAME));
         }
         OriginTrackedYamlLoader yamlLoader = new OriginTrackedYamlLoader();
@@ -45,5 +48,16 @@ public class BourbonEnvironmentPostProcessor implements EnvironmentPostProcessor
                 environment.getPropertySources().addLast(propertySource);
             }
         }
+    }
+
+    private Resource scanBoostrapResource() {
+        DefaultResourceLoader resourceLoader = new DefaultResourceLoader();
+        for (String configLocation : CONFIG_LOCATIONS) {
+            Resource resource = resourceLoader.getResource(configLocation + CONFIG_NAME);
+            if (resource.exists()) {
+                return resource;
+            }
+        }
+        return null;
     }
 }

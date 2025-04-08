@@ -13,11 +13,10 @@ public class BourbonConfigDataLocationResolver implements ConfigDataLocationReso
 
     private static final String PREFIX = "bourbon:";
     private static final String PROFILE_PREFIX = "profile=";
-    private static final String ENABLED_PROPERTY_NAME = "bourbon.enabled";
 
     @Override
     public boolean isResolvable(ConfigDataLocationResolverContext context, ConfigDataLocation location) {
-        return location.hasPrefix(PREFIX) ? context.getBinder().bind(ENABLED_PROPERTY_NAME, Boolean.class).orElse(false) : false;
+        return location.hasPrefix(PREFIX);
     }
 
     @Override
