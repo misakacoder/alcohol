@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.misaka</groupId>
         <artifactId>alcohol</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>kir</artifactId>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>rye</artifactId>
-            <version>1.0</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

@@ -7,11 +7,10 @@
     <parent>
         <groupId>com.misaka</groupId>
         <artifactId>alcohol</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>sherry</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -26,7 +25,7 @@
         <dependency>
             <groupId>com.misaka</groupId>
             <artifactId>korn</artifactId>
-            <version>1.0</version>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 </project>

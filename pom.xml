@@ -6,7 +6,7 @@
 
     <groupId>com.misaka</groupId>
     <artifactId>alcohol</artifactId>
-    <version>1.0</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -22,6 +22,7 @@
     </modules>
 
     <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,10 +37,10 @@
     </properties>
 
     <distributionManagement>
-        <repository>
+        <snapshotRepository>
             <id>misakacoder</id>
             <url>https://maven.pkg.github.com/misakacoder/maven</url>
-        </repository>
+        </snapshotRepository>
     </distributionManagement>
 
     <dependencyManagement>

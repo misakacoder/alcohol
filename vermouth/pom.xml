@@ -7,11 +7,10 @@
     <parent>
         <groupId>com.misaka</groupId>
         <artifactId>alcohol</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>vermouth</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
