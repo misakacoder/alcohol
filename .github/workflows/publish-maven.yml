@@ -37,6 +37,4 @@ jobs:
           EOF
 
       - name: Build and Publish
-        run: mvn -B clean deploy -pl korn -Dmaven.test.skip=true
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: bash deploy_maven.sh
