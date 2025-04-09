@@ -41,8 +41,7 @@ jobs:
 
       - name: Delete old version
         run: |
-          xmllint --version
-          sudo apt-get install -y xmlstarlet
+          sudo apt-get install -y libxml2-utils
           parse() {
               local pom=$1
               groupId=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="groupId"]/text()' "$pom" 2>/dev/null)
