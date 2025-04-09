@@ -67,7 +67,7 @@ jobs:
           excluded_projects=$(IFS=,; echo "${excluded_modules[*]/#/!}")
           echo "excluded_projects=$excluded_projects" >> $GITHUB_ENV
           EOF
-          bash delete.sh
+          cat delete.sh
 
       - name: Build and publish
         run: mvn -B clean deploy -pl ${{ env.excluded_projects }} -am -Dmaven.test.skip=true
