@@ -41,6 +41,7 @@ jobs:
 
       - name: Delete old version
         run: |
+          xmllint --version
           sudo apt-get install -y xmlstarlet
           parse() {
               local pom=$1
