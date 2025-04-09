@@ -39,7 +39,7 @@
     <distributionManagement>
         <repository>
             <id>misakacoder</id>
-            <url>https://maven.pkg.github.com/misakacoder/maven</url>
+            <url>https://maven.pkg.github.com/misakacoder</url>
         </repository>
     </distributionManagement>
 
