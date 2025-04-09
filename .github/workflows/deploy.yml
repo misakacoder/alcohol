@@ -45,6 +45,7 @@ jobs:
         run: |
           sudo apt-get install -y libxml2-utils
           cat <<EOF > delete.sh
+          set -x
           parse() {
               local pom=$1
               groupId=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="groupId"]/text()' "$pom" 2>/dev/null)
