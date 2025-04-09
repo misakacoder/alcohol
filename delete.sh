@@ -7,7 +7,7 @@ parse() {
     fi
     artifactId=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="artifactId"]/text()' "$pom" 2>/dev/null)
     if [ -n "$groupId" ] && [ -n "$artifactId" ]; then
-        curl -s -L -X DELETE -H "Authorization: Bearer ${{ secrets.PERSONAL_ACCESS_TOKEN }}" https://api.github.com/user/packages/maven/$groupId.$artifactId
+        curl -s -L -X DELETE -H "Authorization: Bearer $PERSONAL_ACCESS_TOKEN" https://api.github.com/user/packages/maven/$groupId.$artifactId
     fi
 }
 excluded_modules=("bourbon" "gin" "scotch")
