@@ -44,7 +44,7 @@ jobs:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           sudo apt-get install -y libxml2-utils
-          cat <<EOF > delete.sh
+          cat <<'EOF' > delete.sh
           set -x
           parse() {
               local pom=$1
@@ -67,7 +67,7 @@ jobs:
           excluded_projects=$(IFS=,; echo "${excluded_modules[*]/#/!}")
           echo "excluded_projects=$excluded_projects" >> $GITHUB_ENV
           EOF
-          cat delete.sh
+          bash delete.sh
 
       - name: Build and publish
         run: mvn -B clean deploy -pl ${{ env.excluded_projects }} -am -Dmaven.test.skip=true
