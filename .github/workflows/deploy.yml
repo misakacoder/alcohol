@@ -13,16 +13,17 @@ jobs:
       packages: write
 
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v4
 
-      - name: Set Up JDK
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Configure Maven Setting
+      - name: Configure maven setting
         run: |
           mkdir -p ~/.m2
           cat <<EOF > ~/.m2/settings.xml
@@ -37,5 +38,5 @@ jobs:
           </settings>
           EOF
 
-      - name: Build and Publish
+      - name: Build and publish
         run: mvn -B clean deploy -pl !bourbon,!gin,!scotch -am -Dmaven.test.skip=true
