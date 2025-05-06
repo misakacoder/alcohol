@@ -76,6 +76,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
+                    <excludes>
+                        <exclude>application.yml</exclude>
+                    </excludes>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>

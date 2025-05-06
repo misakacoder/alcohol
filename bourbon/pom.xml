@@ -80,6 +80,9 @@
                                         <include>**/*</include>
                                     </includes>
                                     <filtering>true</filtering>
+                                    <excludes>
+                                        <exclude>proto/**</exclude>
+                                    </excludes>
                                 </resource>
                             </resources>
                             <encoding>UTF-8</encoding>
@@ -111,6 +114,10 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
+                    <excludes>
+                        <exclude>application.yml</exclude>
+                        <exclude>config/**</exclude>
+                    </excludes>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
