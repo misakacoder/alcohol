@@ -1,7 +1,6 @@
 package com.misaka.aop;
 
 import com.misaka.annotation.RateLimiter;
-import com.misaka.enums.LimitType;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,13 +48,13 @@ public class RateLimiterAop {
 
     private String getKey(RateLimiter rateLimiter) {
         String key = rateLimiter.key();
-        LimitType limitType = rateLimiter.limitType();
+        RateLimiter.Type type = rateLimiter.type();
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (servletRequestAttributes != null) {
             StringJoiner joiner = new StringJoiner(":");
             joiner.add(key);
             HttpServletRequest request = servletRequestAttributes.getRequest();
-            if (limitType == LimitType.IP) {
+            if (type == RateLimiter.Type.IP) {
                 joiner.add(request.getRemoteAddr());
             }
             joiner.add(request.getServletPath());

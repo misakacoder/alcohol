@@ -1,9 +1,9 @@
 package com.gin.service.impl;
 
+import com.gin.base.BaseServiceImpl;
+import com.gin.entity.Alcohol;
 import com.gin.service.AlcoholService;
 import org.springframework.stereotype.Service;
-import com.gin.entity.Alcohol;
-import com.gin.base.BaseServiceImpl;
 
 /**
  * <p>

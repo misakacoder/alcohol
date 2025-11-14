@@ -1,7 +1,7 @@
 package com.misaka.annotation;
 
-import com.misaka.config.RedisConfig;
 import com.misaka.aop.RateLimiterAop;
+import com.misaka.config.RedisConfig;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

@@ -1,7 +1,5 @@
 package com.misaka.annotation;
 
-import com.misaka.enums.LimitType;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -17,5 +15,9 @@ public @interface RateLimiter {
 
     int time() default 60;
 
-    LimitType limitType() default LimitType.GLOBAL;
+    Type type() default Type.GLOBAL;
+
+    enum Type {
+        GLOBAL, IP
+    }
 }

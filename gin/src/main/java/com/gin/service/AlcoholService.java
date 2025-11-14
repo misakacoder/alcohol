@@ -1,7 +1,7 @@
 package com.gin.service;
 
-import com.gin.entity.Alcohol;
 import com.gin.base.BaseService;
+import com.gin.entity.Alcohol;
 
 /**
  * <p>

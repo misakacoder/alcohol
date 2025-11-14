@@ -13,7 +13,7 @@ bourbon:
   search-location: classpath:config/
 
 vermouth:
-  enabled: true
+  enabled: false
   home: data\${server.port}
   nodes:
     - 192.168.1.87:5545

@@ -15,7 +15,7 @@
 
     <modules>
         <module>mask-spring-boot-starter</module>
-        <module>rate-limit-spring-boot-starter</module>
+        <module>api-protection-spring-boot-starter</module>
         <module>config-spring-boot-starter</module>
         <module>bourbon-spring-boot-starter</module>
         <module>auth-spring-boot-starter</module>

@@ -1,7 +1,7 @@
 package com.gin.mapper;
 
-import com.gin.entity.Alcohol;
 import com.gin.base.BaseMapper;
+import com.gin.entity.Alcohol;
 
 /**
  * <p>

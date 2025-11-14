@@ -1,6 +1,5 @@
 package com.gin.controller;
 
-import cn.hutool.core.util.RandomUtil;
 import com.gin.base.BaseController;
 import com.gin.base.BaseList;
 import com.gin.base.BasePage;
@@ -9,12 +8,14 @@ import com.gin.service.AlcoholService;
 import com.gin.vo.AlcoholVO;
 import com.github.pagehelper.PageInfo;
 import com.misaka.annotation.RateLimiter;
+import com.misaka.annotation.RepeatSubmitter;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -41,10 +42,12 @@ public class AlcoholController extends BaseController {
 
     @GetMapping("/list")
     @ApiOperation("列表")
-    public List<Alcohol> list(@RequestParam Integer limit) {
+    @RepeatSubmitter(repeat = "'_'.concat(#limit.toString())")
+    public List<Alcohol> list(@RequestParam Integer limit) throws Exception {
         BaseList baseList = new BaseList();
         baseList.setLimit(limit);
         baseList.setOrderBy("id desc");
+        TimeUnit.SECONDS.sleep(3L);
         return alcoholService.list(baseList);
     }
 

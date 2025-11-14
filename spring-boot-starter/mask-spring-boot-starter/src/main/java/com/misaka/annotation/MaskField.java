@@ -2,8 +2,8 @@ package com.misaka.annotation;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.misaka.serializer.MaskFieldSerializer;
 import com.misaka.enums.MaskType;
+import com.misaka.serializer.MaskFieldSerializer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
