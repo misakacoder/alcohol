@@ -7,6 +7,7 @@ import java.util.List;
 public class SerializerFactory {
 
     private static final String SERIALIZER_NAME_KEY = "vermouth.serializer";
+
     private static final String DEFAULT_SERIALIZER_NAME = JavaSerializer.class.getName();
 
     public static Serializer get() {

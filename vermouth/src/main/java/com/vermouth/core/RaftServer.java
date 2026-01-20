@@ -16,6 +16,7 @@ import com.alipay.sofa.jraft.rpc.impl.AbstractClientService;
 import com.alipay.sofa.jraft.rpc.impl.GrpcRaftRpcFactory;
 import com.alipay.sofa.jraft.rpc.impl.MarshallerRegistry;
 import com.alipay.sofa.jraft.rpc.impl.cli.CliClientServiceImpl;
+import com.alipay.sofa.jraft.util.BytesUtil;
 import com.alipay.sofa.jraft.util.Endpoint;
 import com.alipay.sofa.jraft.util.RpcFactoryHelper;
 import com.google.protobuf.Message;
@@ -158,10 +159,9 @@ public class RaftServer {
         Node node = raftGroup.getNode();
         RequestProcessor requestProcessor = raftGroup.getRequestProcessor();
         CompletableFuture<Response> future = RaftClosure.newTimeoutFuture();
-        AtomicBoolean error = new AtomicBoolean(true);
+        AtomicBoolean error = new AtomicBoolean(false);
         try {
-            byte[] context = new byte[0];
-            node.readIndex(context, new ReadIndexClosure() {
+            node.readIndex(BytesUtil.EMPTY_BYTES, new ReadIndexClosure() {
                 @Override
                 public void run(Status status, long index, byte[] context) {
                     if (status.isOk()) {

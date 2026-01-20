@@ -28,7 +28,7 @@ public class RpcClient {
 
     public <T extends Message, R extends Message> CompletableFuture<R> execute(T instance0, R instance1, T message) {
         CompletableFuture<R> future = new CompletableFuture<>();
-        future.orTimeout(10000L, TimeUnit.MILLISECONDS);
+        future.orTimeout(10_000L, TimeUnit.MILLISECONDS);
         MethodDescriptor<T, R> method = MethodDescriptor
                 .newBuilder(ProtoUtils.marshaller(instance0), ProtoUtils.marshaller(instance1))
                 .setType(MethodDescriptor.MethodType.UNARY)
